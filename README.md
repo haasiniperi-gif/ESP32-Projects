@@ -83,14 +83,4 @@ ESP32-Projects/
 
 **Next Goal:** Build a button-controlled LED circuit to understand how a microcontroller reads physical inputs.
 
----
 
-## About This Repository
-
-This repository serves as a record of my progress as I explore embedded systems through practical experimentation.
-
-The goal is not just to make circuits work, but to understand the underlying concepts, document challenges, and gradually develop the ability to design and build projects independently.
-
----
-
-*Learning, building, debugging, and improving — one project at a time.*
