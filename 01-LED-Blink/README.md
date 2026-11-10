@@ -19,6 +19,13 @@ Through this project, I explored basic hardware connections, digital output cont
 | Jumper Wires | 2 |
 | USB Data Cable | 1 |
 
+
+## Connections
+<img width="978" height="727" alt="image" src="https://github.com/user-attachments/assets/e968a083-2bf0-47e5-8816-6aaaa70e3a27" />
+<img width="967" height="713" alt="image" src="https://github.com/user-attachments/assets/82d60fd7-c20a-4510-a08b-476548e6df98" />
+
+
+
 ## Software and Technologies
 
 - **Microcontroller:** ESP32
