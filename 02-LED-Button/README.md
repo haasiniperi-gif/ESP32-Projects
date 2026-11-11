@@ -31,6 +31,10 @@ I used two GPIO pins:
 - **GPIO 23:** Controls the LED
 - **GPIO 18:** Reads the push button
 
+- 
+
+
+
 **LED connections:**
 
 GPIO 23 → 220Ω resistor → LED (+) → LED (−) → GND
