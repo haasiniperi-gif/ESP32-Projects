@@ -61,4 +61,3 @@ I'll keep updating this repository as I complete more projects.
 ---
 
 *Learning electronics, one project at a time.*
-
