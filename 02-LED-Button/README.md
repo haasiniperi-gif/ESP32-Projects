@@ -31,7 +31,10 @@ I used two GPIO pins:
 - **GPIO 23:** Controls the LED
 - **GPIO 18:** Reads the push button
 
-- 
+<img width="917" height="691" alt="image" src="https://github.com/user-attachments/assets/cb95a433-bec1-4df9-8048-ecfed815b845" />
+
+<img width="853" height="524" alt="image" src="https://github.com/user-attachments/assets/301cf0be-ba54-40ba-8ad4-1cfaa2750f7e" />
+
 
 
 
