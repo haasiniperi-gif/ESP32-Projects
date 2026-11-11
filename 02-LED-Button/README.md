@@ -121,8 +121,3 @@ The exact connection responsible for the original problem wasn't conclusively id
 
 The LED now turns on when I press the button and turns off when I release it.
 
-## What's Next?
-
-I'd like to try making the button act as a toggle switch, where one press turns the LED on and the next press turns it off.
-
-That way, I can learn how to make the ESP32 remember a previous state.
