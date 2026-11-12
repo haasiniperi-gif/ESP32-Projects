@@ -1,6 +1,6 @@
 # ESP32 Projects
 
-Hi! Welcome to my ESP32 projects repository!
+Hi! Welcome to my ESP32 projects repository
 
 I'm currently learning electronics and embedded systems through small, hands-on projects. I started this repository to document what I build, the concepts I learn, and the challenges I face along the way.
 
