@@ -2,13 +2,13 @@
 
 ## About the Project
 
-After experimenting with the DHT11 temperature and humidity sensor, I wanted to combine it with the light sensor from my previous project.
+After experimenting with the DHT11 temperature and humidity sensor, I wanted to combine it with the LDR light sensor from my previous project.
 
-The idea was to create a system that automatically switches between day and night modes.
+I built a system that automatically switches between day and night modes depending on the surrounding light.
 
-During the day, the blue LED stays ON while the red LED remains OFF. When darkness is detected, the red LED turns ON, the blue LED turns OFF, and the ESP32 displays temperature and humidity readings every 30 seconds.
+During the day, the blue LED stays ON while the red LED remains OFF. When darkness is detected, the red LED turns ON, the blue LED turns OFF, and the ESP32 starts displaying temperature and humidity readings.
 
-This was my first attempt at combining multiple sensors and outputs into one circuit instead of testing them individually.
+This was my first project involving multiple sensors and outputs working together, rather than testing individual components separately.
 
 ## Components Used
 
@@ -21,7 +21,7 @@ This was my first attempt at combining multiple sensors and outputs into one cir
 - Breadboard
 - Jumper wires
 - USB data cable
-- Digital multimeter
+- Digital multimeter (for troubleshooting)
 
 ## Software
 
@@ -32,6 +32,8 @@ This was my first attempt at combining multiple sensors and outputs into one cir
 - Adafruit Unified Sensor Library
 
 ## Circuit Connections
+
+I used four GPIO pins to connect the sensors and LEDs.
 
 | Component | ESP32 Connection |
 |---|---|
@@ -46,10 +48,9 @@ This was my first attempt at combining multiple sensors and outputs into one cir
 | Red LED cathode (−) | GND |
 | Blue LED cathode (−) | GND |
 
-I used the breadboard's power rails to distribute 3.3 V and GND to the components. Each LED has its own current-limiting resistor.
+I used the breadboard's power rails to distribute 3.3 V and GND to the components.
 
-<img width="973" height="690" alt="image" src="https://github.com/user-attachments/assets/4cbf8799-9ac7-405f-8b52-d94d5a563b1a" />
-
+Each LED has its own current-limiting resistor.
 
 ## Source Code
 
@@ -145,11 +146,17 @@ lib_deps =
     adafruit/Adafruit Unified Sensor
 ```
 
+The DHT libraries handle communication with the temperature and humidity sensor.
+
+The Serial Monitor is configured to communicate at 115200 baud.
+
 ## How It Works
 
-The LDR sensor detects changes in the surrounding light and sends a digital HIGH or LOW signal to the ESP32.
+The system uses an LDR sensor module to detect changes in the surrounding light.
 
-The ESP32 uses this signal to switch between two operating modes.
+The LDR changes its resistance depending on the amount of light falling on it. The LM393 comparator on the module compares the light-dependent signal against an adjustable threshold and produces a digital HIGH or LOW output.
+
+The ESP32 reads this output through GPIO 18 and decides which mode to activate.
 
 ### Day Mode
 
@@ -157,7 +164,7 @@ When sufficient light is detected:
 
 - The red LED remains OFF.
 - The blue LED turns ON.
-- Temperature and humidity readings are paused.
+- Temperature and humidity measurements are paused.
 
 ### Night Mode
 
@@ -166,78 +173,138 @@ When darkness is detected:
 - The red LED turns ON.
 - The blue LED turns OFF.
 - The ESP32 reads temperature and humidity from the DHT11.
-- Measurements appear in Serial Monitor approximately every 30 seconds.
+- The measurements are displayed in Serial Monitor approximately every 30 seconds.
 
-The program uses `millis()` to manage the time between measurements without stopping the ESP32 from checking the light sensor.
+The code uses `millis()` instead of a long `delay()` to track the time between readings.
 
-A Boolean variable called `wasDark` tracks the previous light condition, allowing the program to attempt a reading when it first enters night mode.
+This allows the ESP32 to continue checking the light sensor while waiting for the next temperature and humidity measurement.
+
+I also used a Boolean variable called `wasDark` to remember whether the system was previously in day or night mode.
+
+When the system first enters night mode, the program attempts a temperature and humidity reading immediately rather than waiting for the full 30-second interval.
 
 ## Challenges and Troubleshooting
+
+This project was more challenging than my earlier ones because I had to manage multiple components and their connections at the same time.
 
 ### 1. Split Breadboard Power Rails
 
 One of the biggest problems I faced was with the breadboard's power rails.
 
-Initially, I assumed that every hole along a rail was connected internally.
+Since the ESP32 had limited accessible 3V3 and GND pins, I decided to use the breadboard rails to distribute power to the sensors and LEDs.
 
-However, components worked when placed close to the power jumper wires but stopped working when moved towards the other end.
+Initially, I assumed that every hole along a rail was electrically connected.
 
-After checking continuity with my multimeter, I discovered that the breadboard had split power rails.
+However, I noticed that components worked when placed close to the power jumper wires but stopped working when moved towards the opposite end of the breadboard.
 
-I fixed this by bridging the separate sections of the 3V3 and GND rails using jumper wires.
+After testing the rails using my multimeter's continuity mode, I discovered that my breadboard had split power rails.
 
-### 2. Troubleshooting the LEDs
+The two sections were electrically separate, so components placed on the disconnected sections weren't receiving the required power or ground connection.
+
+I fixed this by using jumper wires to bridge the separate sections of the 3V3 and GND rails.
+
+This taught me that even when the code and components are working correctly, an incomplete power connection can prevent the entire circuit from functioning.
+
+### 2. Troubleshooting the LED Circuits
 
 Initially, neither LED behaved as expected.
 
 I tested the red and blue LED circuits separately using simple GPIO programs.
 
-I checked the output voltages, LED polarity, resistor connections, and continuity through the breadboard.
+I checked whether GPIO 23 and GPIO 22 could produce HIGH output voltages and used continuity mode to trace the connections through the resistors and LEDs.
 
-The blue LED was initially very dim. Replacing it didn't immediately solve the problem, which made me investigate the wiring and power distribution more carefully.
+The red LED eventually worked correctly.
 
-### 3. Serial Monitor Issues
+The blue LED was initially very dim, so I tried replacing it with another LED. However, the replacement behaved similarly.
 
-While working with the DHT11, I encountered garbled Serial Monitor output and serial port errors.
+This made me investigate the breadboard connections and power distribution more carefully rather than assuming the LED itself was faulty.
 
-I learned to check the baud rate, close existing Serial Monitor sessions, and identify the ESP32's current serial port using:
+After correcting the connections, I was able to get both LEDs working as intended.
+
+### 3. Measuring GPIO Voltages
+
+I used the multimeter to check whether the ESP32 was producing the expected voltage at its output pins.
+
+For example, GPIO 22 measured approximately 3.3 V when configured HIGH with the LED circuit disconnected.
+
+However, the blue LED circuit initially did not behave as expected when connected.
+
+This helped me understand why testing a GPIO independently and testing it as part of a complete circuit can give different results.
+
+### 4. Troubleshooting Serial Monitor
+
+While experimenting with the DHT11 sensor, I encountered problems with Serial Monitor displaying unreadable characters.
+
+I checked the baud rate in my C++ program and PlatformIO configuration.
+
+I also encountered serial port errors when trying to open a port that was already in use.
+
+Later, the ESP32's serial port changed between USB connections.
+
+I learned to identify the currently available serial port using:
 
 ```bash
 pio device list
 ```
 
-I also learned that the serial port name can change after reconnecting the ESP32.
+And open Serial Monitor using the detected port:
 
-### 4. Calibrating the Light Sensor
+```bash
+pio device monitor -p /dev/cu.usbserial-120 -b 115200
+```
+
+The port name may change depending on the USB connection.
+
+### 5. Calibrating the Light Sensor
 
 In Project 03, my LDR sensor initially responded reliably only when I used my phone's flashlight.
 
 After further adjustments and testing, I was able to get it responding to normal room lighting as well.
 
-This helped me understand the importance of adjusting a sensor's detection threshold for the actual environment in which it will operate.
+This made the day/night switching system more practical because I no longer needed to shine a flashlight directly onto the sensor to trigger a change.
+
+I learned that a sensor can be functioning correctly but still require calibration to work reliably under real environmental conditions.
+
+### 6. Combining Multiple Sensors
+
+In my earlier projects, I only had to focus on one input or output at a time.
+
+This project required me to assign separate GPIO pins, share the power supply and ground connections, and coordinate multiple components through one program.
+
+I learned that testing components individually before combining them makes troubleshooting much easier.
 
 ## What I Learned
 
-- How to combine multiple sensors and outputs in one ESP32 project.
-- How to assign separate GPIO pins to different components.
-- How to use conditional logic to implement day and night modes.
-- How to use `millis()` for timed sensor readings.
-- How to use Boolean variables to track previous states.
-- How to distribute power through breadboard rails.
-- How to identify and fix split power rails.
-- How to troubleshoot LED circuits using a multimeter.
-- How to configure PlatformIO Serial Monitor.
-- How to adjust an LDR sensor's threshold for normal room lighting.
+Through this project, I learned:
+
+- How to integrate multiple sensors and LEDs with one ESP32.
+- How to assign GPIO pins for different inputs and outputs.
+- How to implement day and night modes using conditional statements.
+- How to use Boolean variables to remember previous states.
+- How `millis()` can be used for non-blocking timing.
+- How to read temperature and humidity using the DHT11 library.
+- How to distribute 3.3 V and GND using breadboard power rails.
+- Why some breadboards have split power rails.
+- How to identify disconnected sections using continuity testing.
+- How to measure GPIO output voltages.
+- How to isolate components while troubleshooting.
+- How to identify and configure serial ports in PlatformIO.
+- How to calibrate a light sensor for normal room lighting.
 
 ## Result
 
-The LDR sensor now responds to changes in normal room lighting without requiring a phone flashlight.
+Successfully built a Smart Day/Night Environmental Monitor using an ESP32, LDR light sensor, DHT11 sensor, and two LEDs.
 
-The split breadboard rail issue has also been resolved, and the individual LED and sensor circuits have been tested during development.
+The complete system automatically switches between day and night modes based on the surrounding light.
 
-The complete day/night system is intended to operate as follows:
-
-| Environment | Red LED | Blue LED | DHT11 |
+| Environment | Red LED | Blue LED | Temperature & Humidity |
 |---|---|---|---|
 | Daylight | OFF | ON | Readings paused |
 | Darkness | ON | OFF | Readings every 30 seconds |
+
+The LDR sensor responds to normal room lighting without requiring a phone flashlight.
+
+Both LEDs switch according to the detected light conditions, and temperature and humidity readings are displayed through Serial Monitor during night mode.
+
+One of the biggest challenges was discovering and correcting the split breadboard power rails, which had initially prevented several components from working properly.
+
