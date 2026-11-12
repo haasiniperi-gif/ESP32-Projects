@@ -48,6 +48,9 @@ This was my first attempt at combining multiple sensors and outputs into one cir
 
 I used the breadboard's power rails to distribute 3.3 V and GND to the components. Each LED has its own current-limiting resistor.
 
+<img width="973" height="690" alt="image" src="https://github.com/user-attachments/assets/4cbf8799-9ac7-405f-8b52-d94d5a563b1a" />
+
+
 ## Source Code
 
 File: `src/main.cpp`
