@@ -52,6 +52,9 @@ I used the breadboard's power rails to distribute 3.3 V and GND to the component
 
 Each LED has its own current-limiting resistor.
 
+<img width="959" height="704" alt="image" src="https://github.com/user-attachments/assets/04ad944d-eb37-4b5b-a2ff-f011a08c20fa" />
+
+
 ## Source Code
 
 File: `src/main.cpp`
