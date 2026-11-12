@@ -37,6 +37,13 @@ I used GPIO 18 to read the light sensor's digital output and GPIO 23 to control 
 | GND | GND |
 | DO | GPIO 18 (D18) |
 
+<img width="899" height="623" alt="image" src="https://github.com/user-attachments/assets/24f39c9e-76be-4cf3-a1b2-10e61d87ac81" />
+<img width="944" height="716" alt="image" src="https://github.com/user-attachments/assets/0e8d6cf2-7245-4081-b218-dff70eab6ea2" />
+<img width="1082" height="845" alt="image" src="https://github.com/user-attachments/assets/a432e1ad-373b-47c4-9bb5-01308326714c" />
+
+
+
+
 **LED Circuit**
 
 GPIO 23 → 220Ω resistor → LED anode (+) → LED cathode (−) → GND
