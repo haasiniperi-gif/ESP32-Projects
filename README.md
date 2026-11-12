@@ -1,12 +1,12 @@
 # ESP32 Projects
 
-Hi! Welcome to my ESP32 projects repository
+Hi! Welcome to my ESP32 projects repository!
 
 I'm currently learning electronics and embedded systems through small, hands-on projects. I started this repository to document what I build, the concepts I learn, and the challenges I face along the way.
 
-I'm starting with the basics and gradually moving towards projects involving sensors, automation, and IoT.
+I'm starting with basic circuits and gradually moving towards projects involving sensors, automation, and IoT.
 
-My goal is to become comfortable enough with electronics to understand how circuits work, troubleshoot problems, and eventually build projects independently rather than just following tutorials.
+My goal is to understand how hardware and software work together and become more confident in building and troubleshooting circuits independently.
 
 ## My Projects
 
@@ -14,8 +14,8 @@ My goal is to become comfortable enough with electronics to understand how circu
 |---|---|---|---|
 | 01 | LED Blinking | GPIO outputs, LED interfacing, basic programming | Completed |
 | 02 | Button-Controlled LED | Digital inputs, push buttons, pull-up resistors | Completed |
-| 03 | Automatic Night Lamp | LDR sensors, comparators, digital signals | Completed (Calibration Pending) |
-| 04 | Temperature & Humidity Monitor | Sensor interfacing | Planned |
+| 03 | Automatic Night Lamp | LDR sensors, comparators, digital signals, calibration | Completed |
+| 04 | Smart Day/Night Environmental Monitor | Multiple sensors, conditional logic, DHT11, power distribution, `millis()` | Testing |
 | 05 | Ultrasonic Distance Meter | Distance measurement | Planned |
 | 06 | Motion Detection System | PIR sensors | Planned |
 | 07 | Wi-Fi Sensor Dashboard | IoT and wireless communication | Planned |
@@ -29,28 +29,37 @@ Each project has its own folder containing the source code, circuit connections,
 - Breadboard and jumper wires
 - LEDs, resistors, and push buttons
 - LDR light sensor module
-- Other sensors and basic electronic components
+- DHT11 temperature and humidity sensor
+- Digital multimeter
+- Other basic electronic components
 
 **Software**
 - Visual Studio Code
 - PlatformIO
 - Arduino framework (C++)
+- Adafruit sensor libraries
 
 ## What I've Learned So Far
 
-Through my first three projects, I've started getting comfortable with:
+Through these projects, I've started getting comfortable with:
 
 - Using GPIO pins as digital inputs and outputs.
 - Understanding how microcontrollers interact with external components.
-- Working with push buttons and pull-up resistors.
-- Interfacing sensors with the ESP32.
-- Understanding how LDRs and comparators work.
+- Working with push buttons and internal pull-up resistors.
+- Interfacing light, temperature, and humidity sensors with the ESP32.
+- Reading and displaying sensor measurements using Serial Monitor.
+- Using external libraries in PlatformIO.
+- Understanding how comparators and digital sensor outputs work.
+- Combining multiple components into a single system.
+- Using `millis()` to manage timed operations.
+- Distributing 3.3 V and GND through breadboard power rails.
+- Identifying and fixing split power rails.
 - Using a multimeter to measure voltage, resistance, and continuity.
-- Identifying incorrect GPIO connections and wiring mistakes.
-- Troubleshooting hardware and software problems step by step.
+- Calibrating light sensors for normal room conditions.
+- Troubleshooting circuits by testing individual components.
 
-One thing I've realised is that getting a circuit to work isn't always as straightforward as it looks.
+One thing I've realised is that getting a circuit to work isn't always as simple as following a diagram.
 
-Sometimes the code is correct, but the connections aren't. Other times, a component works perfectly fine but needs some adjustment to perform the way I want it to.
+A lot of my time has gone into figuring out why something isn't working, whether it's an incorrect GPIO connection, a sensor threshold that needs adjustment, a serial communication issue, or a breadboard connection I initially overlooked.
 
-I've also learned that testing individual parts of a circuit makes troubleshooting much easier than changing everything at once.
+Working through these problems has helped me become more comfortable with debugging and understanding how the different parts of a circuit interact.
