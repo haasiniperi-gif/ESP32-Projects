@@ -1,61 +1,60 @@
 # ESP32 Projects
 
-Hi! Welcome to my ESP32 projects repository.
+Hi! Welcome to my ESP32 projects repository!
 
-I'm currently exploring electronics and embedded systems through small, hands-on projects. I started this repository to document my progress as I learn how to work with microcontrollers, build circuits, and understand how hardware and software work together.
+I'm currently learning electronics and embedded systems through small, hands-on projects. I started this repository to document what I build, the concepts I learn, and the challenges I face along the way.
 
-I'm starting with simple projects and gradually working towards more practical applications involving sensors, automation, and IoT.
+I'm starting with the basics and gradually moving towards projects involving sensors, automation, and IoT.
 
-Along the way, I'll be sharing my code, circuit setups, challenges, and things I've learned.
+My goal is to become comfortable enough with electronics to understand how circuits work, troubleshoot problems, and eventually build projects independently rather than just following tutorials.
 
-## Projects
+## My Projects
 
-| No. | Project | What I Learned | Status |
+| No. | Project | What I Explored | Status |
 |---|---|---|---|
-| 01 | [LED Blinking](./01-LED-Blink/) | GPIO outputs, LED interfacing, basic programming | Completed |
-| 02 | [Button-Controlled LED](./02-LED-Button/) | Digital inputs, pull-up resistors, button interfacing | Completed |
-| 03 | Automatic Night Lamp | Light sensing using an LDR | Planned |
+| 01 | LED Blinking | GPIO outputs, LED interfacing, basic programming | Completed |
+| 02 | Button-Controlled LED | Digital inputs, push buttons, pull-up resistors | Completed |
+| 03 | Automatic Night Lamp | LDR sensors, comparators, digital signals | Completed (Calibration Pending) |
 | 04 | Temperature & Humidity Monitor | Sensor interfacing | Planned |
 | 05 | Ultrasonic Distance Meter | Distance measurement | Planned |
 | 06 | Motion Detection System | PIR sensors | Planned |
-| 07 | Wi-Fi Sensor Dashboard | Wireless communication and IoT | Planned |
+| 07 | Wi-Fi Sensor Dashboard | IoT and wireless communication | Planned |
 
-Each completed project has its own folder containing the code, circuit details, and a short explanation of how it works.
+Each project has its own folder containing the source code, circuit connections, explanations, and the things I learned while building it.
 
-## Tools and Components
+## Hardware and Software
 
 **Hardware**
 - ESP32 DevKit V1
 - Breadboard and jumper wires
-- LEDs, resistors, push buttons
-- Sensors and other basic electronic components
+- LEDs, resistors, and push buttons
+- LDR light sensor module
+- Other sensors and basic electronic components
 
 **Software**
 - Visual Studio Code
 - PlatformIO
-- Arduino Framework (C++)
+- Arduino framework (C++)
 
 ## What I've Learned So Far
 
-Through my first two projects, I've started getting comfortable with:
+Through my first three projects, I've started getting comfortable with:
 
-- Using GPIO pins to control external components
-- Working with digital inputs and outputs
-- Understanding breadboard connections
-- Using a multimeter to test circuits
-- Writing and uploading code to the ESP32
-- Troubleshooting circuits when things don't work as expected
+- Using GPIO pins as digital inputs and outputs.
+- Understanding how microcontrollers interact with external components.
+- Working with push buttons and pull-up resistors.
+- Interfacing sensors with the ESP32.
+- Understanding how LDRs and comparators work.
+- Using a multimeter to measure voltage, resistance, and continuity.
+- Identifying incorrect GPIO connections and wiring mistakes.
+- Troubleshooting hardware and software problems step by step.
 
-One thing I've realised is that getting a circuit to work isn't always as simple as following a diagram. Sometimes the connections look right, but the circuit still doesn't behave the way you expect.
+One thing I've realised is that getting a circuit to work isn't always as straightforward as it looks.
 
-Figuring out what went wrong has been an important part of the learning process.
+Sometimes the code is correct, but the connections aren't. Other times, a component works perfectly fine but needs some adjustment to perform the way I want it to.
 
-## What's Next?
+I've also learned that testing individual parts of a circuit makes troubleshooting much easier than changing everything at once.
 
-I want to keep experimenting with different electronic components and eventually build devices that are useful in everyday life.
 
-For now, I'm focusing on understanding the basics properly, getting more confident with circuit building, and learning to troubleshoot problems independently.
-
-I'll keep updating this repository as I complete more projects.
 
 
