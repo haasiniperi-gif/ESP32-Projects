@@ -204,14 +204,4 @@ Through this project, I learned:
 - How to troubleshoot a circuit systematically instead of changing connections randomly.
 - The difference between a functioning prototype and a reliably calibrated device.
 
-## Future Improvements
 
-- Calibrate the sensor to distinguish normal room lighting from darkness.
-- Experiment with different light-detection thresholds.
-- Explore using a bare LDR and an analog voltage divider for more precise light measurements.
-- Add software filtering or hysteresis to prevent unwanted switching near the threshold.
-- Replace the small indicator LED with a brighter, low-voltage lamp.
-
----
-
-*Project 03 | ESP32 Embedded Systems Learning Journey*
